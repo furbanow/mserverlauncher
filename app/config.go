@@ -5,10 +5,8 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
-)
-
-const (
-	configFilePath = ".mserverlauncher-config.json"
+	"os/user"
+	"path"
 )
 
 type Config struct {
@@ -17,7 +15,27 @@ type Config struct {
 	VersionsPath string `json:"versions_path"`
 }
 
+func configFilePath() string {
+	configFile := ".mserverlauncher-config.json"
+	usr, _ := user.Current()
+	usrDir := usr.HomeDir
+
+	configFilePath := path.Join(usrDir, configFile)
+	return configFilePath
+}
+
+func mserverlauncherPath() string {
+	configFile := "games/minecraft_server/"
+	usr, _ := user.Current()
+	usrDir := usr.HomeDir
+
+	configFilePath := path.Join(usrDir, configFile)
+	return configFilePath
+}
+
 func LoadConfig() (Config, error) {
+
+	configFilePath := configFilePath()
 
 	_, err := os.Stat(configFilePath)
 	if os.IsNotExist(err) {
@@ -39,15 +57,15 @@ func LoadConfig() (Config, error) {
 
 func CreateConfig() (Config, error) {
 
-	fmt.Printf("Creating config file at %s\n", configFilePath)
+	fmt.Printf("Creating config file at %s\n", mserverlauncherPath())
 	c := Config{
-		RootPath:     "s",
+		RootPath:     mserverlauncherPath(),
 		ServersPath:  "servers",
 		VersionsPath: "versions"}
 
 	buf, _ := json.MarshalIndent(c, "", "\t")
 
-	return c, ioutil.WriteFile(configFilePath, buf, 0644)
+	return c, ioutil.WriteFile(configFilePath(), buf, 0644)
 
 	//return c, nil
 
