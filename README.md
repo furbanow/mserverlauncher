@@ -2,7 +2,7 @@
 
 ## WHAT
 A simple command line tool to easly create and manage and configure Minecraft Servers 
-Designed to be used by children
+Designed to be used by everyone including children
 
 ## Limitation
 - Works on Linux only but can be run with windows using WSL
