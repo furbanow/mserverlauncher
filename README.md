@@ -6,10 +6,10 @@ Designed to be used by everyone including children
 
 ## Limitation
 - Works on Linux only but can be run with windows using WSL
-- You need to create this arboresence folder in your home dir and 
-games/minecraft_server
-    /versions/server.jar  <= download from official minecraft site and put it here
-    /servers/ <= the servers instances will be created here
+- You need to create this arboresence folder in your home dir  
+  - games/minecraft_server
+    - /versions/server.jar  <= download from official minecraft site and put it here
+    - /servers/ <= the servers instances will be created here
 
 ## HOW
 This simple tool is written in golang
